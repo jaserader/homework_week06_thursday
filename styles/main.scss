@@ -1,0 +1,56 @@
+@import "../bower_components/bourbon/app/assets/stylesheets/_bourbon.scss";
+@import "../bower_components/neat/app/assets/stylesheets/_neat.scss";
+
+*{
+  box-sizing: border-box;
+}
+
+body {
+  @include outer-container;
+  font-family: sans-serif;
+}
+
+header {
+  height: 70px;
+  background: #F3955B;
+
+  nav {
+    @include span-columns(12);
+
+    a {
+      @include span-columns(12);
+      position: relative;
+      margin-top: 10px;
+      color: #fff;
+      text-decoration: none;
+      text-align: center;
+
+      #logo {
+        font-size: 56px;
+        margin-right: 10px;
+        position: absolute;
+        right: 52%;
+      }
+
+      #title {
+        font-family: 'Exo', sans-serif;
+        font-size: 30px;
+        font-weight: lighter;
+        letter-spacing: 1px;
+        position: absolute;
+        top: 11px;
+        right: 34.5%;
+      }
+    }
+  }
+}
+
+main {
+  input{
+    @include span-columns(12);
+    font-family: 'Exo', sans-serif;
+    height: 50px;
+    font-size: 20px;
+    padding-left: 20px;
+  }
+}
