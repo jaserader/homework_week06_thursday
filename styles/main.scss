@@ -11,8 +11,12 @@ body {
 }
 
 header {
+  @include span-columns(12);
   height: 70px;
   background: #F3955B;
+  // border-radius: 10px;
+  // border-bottom-right-radius: 15px;
+  // border-top-left-radius: 15px;
 
   nav {
     @include span-columns(12);
@@ -49,8 +53,33 @@ main {
   input{
     @include span-columns(12);
     font-family: 'Exo', sans-serif;
+    color: #969CB2;
     height: 50px;
     font-size: 20px;
     padding-left: 20px;
+    border: 2px #969CB2 solid;
+    border-radius: 5px;
+    // border-bottom-right-radius: 15px;
+    // border-top-left-radius: 15px;
+
+    &:focus {
+      margin-top:2px;
+      height: 65px;
+      outline-color: #89D3A6;
+    }
+    }
   }
-}
+
+  #listArea {
+    .newTodo{
+      ul{
+        li{
+          @include span-columns(12);
+
+          border: 1px gray solid;
+          list-style: none;
+          height: 35px;
+        }
+      }
+    }
+  }

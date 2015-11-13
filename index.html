@@ -15,15 +15,38 @@
       </nav>
     </header>
 
-    <main id="mainArea">
-        <input type="text" name="name" value="" placeholder="What do you need to do?">
-    </main>
+    <main id="mainArea"></main>
+    <section id="listArea"></section>
 
-    <script type="text/template" id="todoPost">
-      <div class="">
-        <span></span>
+    <script id="todoHome" type="text/template">
+        <input id= "newTodoText" type="text" value="" placeholder="What do you need to do?">
+      </script>
+
+    <script id="todoPost" type="text/template">
+      <div class="newTodo">
+        <ul>
+        <% _.forEach(todos, function(todo){ %>
+          <li>
+            <span id="expand"><%= todo.todo %></span>
+            <div class="box">
+                <%= _.trunc(todo.body, 100) %>
+            </div>
+          </li>
+        <% }) %>
+      </ul>
       </div>
     </script>
+
+    <!-- <script id="todoMenu" type="text/template" >
+      <div class="">
+        <span></span>
+        <nav>
+          <a href="#">All</a>
+          <a href="#">Active</a>
+          <a href="#">Completed</a>
+        </nav>
+      </div>
+    </script> -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
