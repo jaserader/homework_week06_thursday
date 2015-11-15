@@ -27,26 +27,24 @@
         <ul>
         <% _.forEach(todos, function(todo){ %>
           <li>
-            <span id="expand"><%= todo.todo %></span>
-            <div class="box">
-                <%= _.trunc(todo.body, 100) %>
-            </div>
+            <input id="markOff" type="radio"  value="true">
+            <input id="expand" placeholder="<%= todo.todo %>">
+            <!-- <div class="box"> -->
+                <!-- <%= _.trunc(todo.body, 100) %> -->
+            <!-- </div> -->
           </li>
         <% }) %>
       </ul>
-      </div>
-    </script>
-
-    <!-- <script id="todoMenu" type="text/template" >
-      <div class="">
-        <span></span>
+      <div class="todoMenuBar">
         <nav>
           <a href="#">All</a>
           <a href="#">Active</a>
           <a href="#">Completed</a>
         </nav>
       </div>
-    </script> -->
+      </div>
+    </script>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>

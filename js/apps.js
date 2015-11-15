@@ -19,6 +19,10 @@ var homeView = Backbone.View.extend({
     'keypress #newTodoText': 'handleEnter'
   },
 
+  initialize: function (){
+    this.listenTo(this.collection, 'fetch sync', this.render);
+ },
+
   send: function (){
     var todoValue = this.$('#newTodoText').val();
 
@@ -38,6 +42,7 @@ var homeView = Backbone.View.extend({
      event.preventDefault();
      console.log('sent!');
      this.send();
+     $('#newTodoText').val("");
    }
  },
 });
@@ -45,7 +50,6 @@ var homeView = Backbone.View.extend({
 ////////////////////////////////////////////////////////////////////////////////
 
 var todoListView = Backbone.View.extend({
-  // tag: 'section',
   template: _.template($('#todoPost').html()),
 
   render: function(){
