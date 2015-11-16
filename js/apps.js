@@ -26,6 +26,9 @@ var homeView = Backbone.View.extend({
   send: function (){
     var todoValue = this.$('#newTodoText').val();
 
+    // this.collection.create({
+    //    todo : todoValue
+    // });
     var newTodo = new todo ({
       todo : todoValue
     });
@@ -35,6 +38,8 @@ var homeView = Backbone.View.extend({
 
   render: function(){
     this.$el.html(this.template());
+
+    return this;
   },
 
   handleEnter: function(event){
@@ -43,8 +48,9 @@ var homeView = Backbone.View.extend({
      console.log('sent!');
      this.send();
      $('#newTodoText').val("");
-   }
- },
+    }
+   },
+
 });
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -52,11 +58,37 @@ var homeView = Backbone.View.extend({
 var todoListView = Backbone.View.extend({
   template: _.template($('#todoPost').html()),
 
+  events: {
+    'keypress #editTodo': 'handleEnter2',
+    'click #deleteBtn': 'onRemove'
+  },
+
+  initialize: function (){
+    this.listenTo(this.model, 'destroy', this.remove);
+  },
+
+  send: function (){
+    var todoValue = this.$('#editTodo').val();
+  },
+
   render: function(){
     this.$el.html(this.template({
       todos: this.collection.toJSON()
     }));
     return this;
+  },
+
+  handleEnter2: function(event){
+   if(event.keyCode === 13){
+     event.preventDefault();
+     console.log('sent!');
+     this.send();
+     $('#editTodo').val("");
+   }
+ },
+
+   onRemove: function() {
+    this.model.destroy();
   }
 });
 
@@ -64,12 +96,18 @@ var todoListView = Backbone.View.extend({
 
 var todoRouter = Backbone.Router.extend({
   routes: {
-    "": "home"
+    "": "home",
+    "active": "active",
+    "completed": "completed"
   },
 
   home: function() {
     console.log('hi');
-    var view = new homeView();
+    var collection = new todo();
+    var view = new homeView({
+      collection: collection
+      }
+    );
     view.render();
     $('#mainArea').html(view.$el);
 
@@ -83,8 +121,21 @@ var todoRouter = Backbone.Router.extend({
       listView.render();
       $('#listArea').html(listView.el);
     }
-  })
+  });
+
+  var model = new todo();
+
+    model.on('change', {
+      success: function(){
+      listView.render();
+      $('#listArea').html(listView.el);
+      }
+    });
 }
+
+  // active: function(){
+  //
+  // }
 });
 
 var router = new todoRouter();

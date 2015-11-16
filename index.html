@@ -28,7 +28,8 @@
         <% _.forEach(todos, function(todo){ %>
           <li>
             <input id="markOff" type="radio"  value="true">
-            <input id="expand" placeholder="<%= todo.todo %>">
+            <input id="editTodo" placeholder="<%= todo.todo %>">
+            <button id="deleteBtn" type="button" name="button">X</button>
             <!-- <div class="box"> -->
                 <!-- <%= _.trunc(todo.body, 100) %> -->
             <!-- </div> -->
@@ -38,8 +39,8 @@
       <div class="todoMenuBar">
         <nav>
           <a href="#">All</a>
-          <a href="#">Active</a>
-          <a href="#">Completed</a>
+          <a href="#active">Active</a>
+          <a href="#completed">Completed</a>
         </nav>
       </div>
       </div>
